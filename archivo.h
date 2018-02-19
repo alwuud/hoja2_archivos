@@ -10,26 +10,17 @@ void mostrarBitMap(){
         int j=0;
         while(1){
 
-            fread(&bits,sizeof(bitmap),1, escritor);
-
+             fread(&bits,sizeof(bitmap),1, escritor);
 
              if(last == ftell(escritor))
                 break;
              else
                 last= ftell(escritor);
-
-
              for(j=0; j<20; j++){
-
                     if(j%5==0)
                         printf("\n");
-
                     printf("%d ", bits.bits[j]);
-
-
-                    //temporal= ftell(archivo);
-
-            }
+             }
             printf("\n");
         }
 
@@ -52,13 +43,26 @@ void agregarCadena (char * cadena){
 void crearArchivos (){
 
         //arreglo de inodos para escribirlos en una sola instruccion posteriormente
-
+        int direccion=0;
+        int bandera=1;
         inodo ino[20];
+
+
         int i=0;
         for(i=0; i<20; i++){
-          ino[i].next=0;
-        //ino.next=1;
 
+            if(bandera){
+                ino[i].apInd1=direccion + sizeof(inodo);
+
+                ino[i].apInd2=direccion + 2* sizeof(inodo);
+                direccion= direccion + 2* sizeof(inodo);
+
+            }else{
+                ino[i].apInd1=-1;
+                ino[i].apInd2=-1;
+            }
+            bandera=!bandera;
+            printf("%d bandera \n", bandera);
 
         }
 
@@ -81,7 +85,7 @@ void crearArchivos (){
 
         system(comando);
         system("clear");
-        free(comando);
+
 
 
         FILE* escritor = fopen("inodo.bin", "rb+");
@@ -90,17 +94,6 @@ void crearArchivos (){
 
         fwrite(&ino, sizeof(inodo), 20, escritor);
 
-        /*
-
-        inodo prueba;
-        fseek(escritor, 0, SEEK_SET);
-        int j=0;
-
-        for(j=0; j<20; j++){
-
-            fread(&prueba,sizeof(inodo),1, escritor);
-            printf("%d next \n", prueba.next);
-        }*/
 
         fclose(escritor);
 
