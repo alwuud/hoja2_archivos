@@ -16,6 +16,43 @@ void mostrarBitMap(){
                 break;
              else
                 last= ftell(escritor);
+             printf("Bitmap %d \n", temporal);
+             for(j=0; j<20; j++){
+                    if(j%5==0)
+                        printf("\n");
+                    printf("%d ", bits.bits[j]);
+             }
+             temporal++;
+            printf("\n");
+        }
+
+        fclose(escritor);
+
+}
+
+void agregarCadena (char * cadena){
+
+
+
+        int aux=0;
+
+        bitmap bits;
+        int last=0,temporal;
+
+        FILE* escritor = fopen("bitmap.bin", "rb");
+
+        fseek(escritor, 0, SEEK_SET);
+
+
+        int j=0;
+        while(1){
+
+             fread(&bits,sizeof(bitmap),1, escritor);
+
+             if(last == ftell(escritor))
+                break;
+             else
+                last= ftell(escritor);
              for(j=0; j<20; j++){
                     if(j%5==0)
                         printf("\n");
@@ -23,18 +60,6 @@ void mostrarBitMap(){
              }
             printf("\n");
         }
-
-        fclose(escritor);
-
-
-
-
-}
-void agregarCadena (char * cadena){
-
-
-
-
 
 
 }
@@ -56,6 +81,7 @@ void crearArchivos (){
 
                 ino[i].apInd2=direccion + 2* sizeof(inodo);
                 direccion= direccion + 2* sizeof(inodo);
+
 
             }else{
                 ino[i].apInd1=-1;
