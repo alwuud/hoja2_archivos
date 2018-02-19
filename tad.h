@@ -1,8 +1,9 @@
-//Se establecieron las cadenas de 17 caracteres por el caracter de finalizacion ( asi seran 16 car almacenados)
+
 
 typedef struct{
-    char data[10][17];
-    int next;
+    char data[10][16];
+    int apInd1;  // -1 va a significar que estan bloqueados
+    int apInd2;   //                 ""
 
 
 } inodo;
