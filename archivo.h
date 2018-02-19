@@ -32,20 +32,26 @@ void mostrarBitMap(){
 
 void agregarCadena (char * cadena){
 
+        char entrada[1000]="";
+        strcpy(entrada, cadena);
 
 
-        int aux=0;
+
 
         bitmap bits;
-        int last=0,temporal;
+        inodo ino;
 
-        FILE* escritor = fopen("bitmap.bin", "rb");
+
+        int last=0, aux=0, espacio=0;
+
+        FILE* escritor = fopen("bitmap.bin", "rb+");
 
         fseek(escritor, 0, SEEK_SET);
 
 
+
         int j=0;
-        while(1){
+        while(!espacio){
 
              fread(&bits,sizeof(bitmap),1, escritor);
 
@@ -54,12 +60,37 @@ void agregarCadena (char * cadena){
              else
                 last= ftell(escritor);
              for(j=0; j<20; j++){
-                    if(j%5==0)
-                        printf("\n");
-                    printf("%d ", bits.bits[j]);
+                  if(bits.bits[j])
+                    aux++;
+                  else{
+
+                    espacio=1;
+                     break;
+                }
              }
-            printf("\n");
         }
+
+        fclose(escritor);
+
+        int tamano=0, restante=strlen(entrada);
+
+        tamano=restante/160;
+
+
+        if(restante%160){
+            tamano++;
+        }
+
+
+        fopen("inodos.bin", "rb+");
+        fseek(escritor,aux*sizeof(inodo), SEEK_SET );
+        fread(&ino, sizeof(inodo),1, escritor);
+
+
+        while(restante){
+
+        }
+
 
 
 }
