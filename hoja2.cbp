@@ -31,10 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="archivo.h" />
-		<Unit filename="main.c">
+		<Unit filename="[MIA]main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="archivo.h" />
 		<Unit filename="tad.h" />
 		<Extensions>
 			<code_completion />
