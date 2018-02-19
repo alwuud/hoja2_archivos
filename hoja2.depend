@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1518668575 source:/home/alwud/Desktop/Hoja1/hoja2/main.c
+	<stdio.h>
+	<stdlib.h>
+	"tad.h"
+	"archivo.h"
+
+1518667589 /home/alwud/Desktop/Hoja1/hoja2/tad.h
+
+1518693202 /home/alwud/Desktop/Hoja1/hoja2/archivo.h
+
+1518668575 source:/home/alwud/Desktop/Hoja1/hoja2/[MIA]main.c
+	<stdio.h>
+	<stdlib.h>
+	"tad.h"
+	"archivo.h"
+
